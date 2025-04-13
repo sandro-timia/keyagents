@@ -2,7 +2,7 @@
 
 import EmailSignupForm from '../molecules/EmailSignupForm';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Declare Calendly on the window object
 declare global {
@@ -14,6 +14,18 @@ declare global {
 }
 
 export default function Hero() {
+  // Track all visible bullets
+  const [visibleBullets, setVisibleBullets] = useState<number[]>([]);
+  const animationRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Text content for the AI bullet points
+  const bulletPoints = [
+    "Crea un sitio web para tu negocio en días",
+    "Ahorra miles de dólares en agencias de desarrollo y marketing digital",
+    "Aprender una nueva forma de programar llamada vibe coding no necesitas ser ingeniero",
+    "Automatiza tu negocio, crea empleados digitales que se encarguen de las redes sociales, ventas, gestión de pedidos y todo lo que puedas imaginar"
+  ];
+  
   // Initialize Calendly once component mounts
   useEffect(() => {
     // Add Calendly CSS
@@ -21,7 +33,85 @@ export default function Hero() {
     link.href = 'https://assets.calendly.com/assets/external/widget.css';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
-  }, []);
+    
+    // Create styles for the bullet point animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes neonPulse {
+        0%, 100% { text-shadow: 0 0 5px rgba(168,255,96,0.8), 0 0 10px rgba(168,255,96,0.5), 0 0 15px rgba(168,255,96,0.3); }
+        50% { text-shadow: 0 0 10px rgba(168,255,96,1), 0 0 20px rgba(168,255,96,0.8), 0 0 30px rgba(168,255,96,0.5); }
+      }
+      
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .bullet-animated {
+        animation-name: fadeInUp;
+        animation-duration: 0.6s;
+        animation-fill-mode: forwards;
+      }
+      
+      .bullet-number {
+        position: relative;
+        overflow: hidden;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Sequential animation for bullet points
+    const startAnimation = () => {
+      // Show bullets one by one with a delay
+      for (let i = 0; i < bulletPoints.length; i++) {
+        const timer = setTimeout(() => {
+          setVisibleBullets(prev => [...prev, i]);
+        }, i * 2000); // 2 second delay between bullet points
+        
+        // Store the last timeout to clear it if needed
+        if (i === bulletPoints.length - 1) {
+          animationRef.current = timer;
+        }
+      }
+    };
+    
+    // Start the animation sequence after a brief delay
+    const initialDelay = setTimeout(startAnimation, 1000);
+    
+    // Clean up function
+    return () => {
+      if (link.parentNode) document.head.removeChild(link);
+      if (style.parentNode) document.head.removeChild(style);
+      if (initialDelay) clearTimeout(initialDelay);
+      if (animationRef.current) clearTimeout(animationRef.current);
+      
+      // Clear all potential timeouts
+      for (let i = 0; i < bulletPoints.length; i++) {
+        clearTimeout(i * 2000 + 1000);
+      }
+    };
+  }, []); // Empty dependency array to run only once
 
   // Function to handle Calendly popup
   const openCalendly = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -34,14 +124,22 @@ export default function Hero() {
 
   return (
     <div className="hero" style={{ padding: '6rem 0 8rem' }}>
-      <div className="container grid">
+      <div className="container" style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '1.5rem',
+        minHeight: '500px',
+      }}>
         <div style={{ 
           position: 'relative',
           zIndex: 1, 
           borderRadius: '1rem',
           padding: '2rem',
           background: 'rgba(47,47,47,0.7)',
-          backdropFilter: 'blur(10px)'
+          backdropFilter: 'blur(10px)',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
         }}>
           <h1 className="mb-8" style={{ color: 'white' }}>
             Launch Your Digital Business with{' '}
@@ -54,7 +152,7 @@ export default function Hero() {
           
           {/* Calendly Icon with Link */}
           <div style={{ 
-            marginTop: '2rem',
+            marginTop: 'auto',
             backgroundColor: 'rgba(168, 255, 96, 0.15)',
             borderRadius: '0.75rem',
             padding: '1.5rem',
@@ -104,32 +202,276 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="card" style={{ 
-          height: '400px', 
+        <div style={{ 
           background: 'linear-gradient(to bottom right, var(--electric-blue), var(--digital-violet))',
+          borderRadius: '1rem',
           position: 'relative',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          padding: '2rem',
+          height: '100%',
+          minHeight: '600px',
         }}>
-          <div className="parallax-effect" style={{ 
-            height: '100%', 
-            display: 'flex', 
-            alignItems: 'center', 
+          {/* Futuristic design elements */}
+          <div className="scan-line"></div>
+          
+          <h2 style={{ 
+            color: 'var(--neon-lime)', 
+            textAlign: 'center', 
+            fontSize: '2.5rem', 
+            textShadow: '0 0 10px rgba(168,255,96,0.7), 0 0 20px rgba(168,255,96,0.5)',
+            marginBottom: '2rem',
+            animationName: 'neonPulse',
+            animationDuration: '2s',
+            animationIterationCount: 'infinite',
+            fontFamily: 'monospace'
+          }}>KeyAgents</h2>
+          
+          {/* AI Robot with animated effects */}
+          <div className="ai-robot-container" style={{
+            width: '90px',
+            height: '90px',
+            backgroundColor: 'var(--dark-gray)',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'center',
+            marginBottom: '2rem',
             position: 'relative',
-            zIndex: 1
+            boxShadow: '0 0 20px rgba(168,255,96,0.5), inset 0 0 10px rgba(168,255,96,0.3)',
+            animationName: 'float',
+            animationDuration: '4s',
+            animationTimingFunction: 'ease-in-out',
+            animationIterationCount: 'infinite'
           }}>
-            <h2 style={{ color: 'var(--neon-lime)', textAlign: 'center', fontSize: '2.5rem', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>KeyAgents</h2>
+            <svg 
+              width="50" 
+              height="50" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ color: 'var(--neon-lime)' }}
+            >
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
+              <circle cx="8.5" cy="9.5" r="1.5" fill="currentColor"/>
+              <circle cx="15.5" cy="9.5" r="1.5" fill="currentColor"/>
+              <path d="M12 16.5C14.33 16.5 16.32 14.96 17.25 13H6.75C7.68 14.96 9.67 16.5 12 16.5Z" fill="currentColor"/>
+              <path d="M7 6H9V8H7V6Z" fill="currentColor"/>
+              <path d="M15 6H17V8H15V6Z" fill="currentColor"/>
+            </svg>
+            
+            {/* CPU circuits around the robot */}
+            <svg 
+              width="120" 
+              height="120" 
+              viewBox="0 0 120 120" 
+              fill="none" 
+              style={{ 
+                position: 'absolute',
+                top: '-15px',
+                left: '-15px',
+                opacity: 0.5,
+                animationName: 'neonPulse',
+                animationDuration: '3s',
+                animationIterationCount: 'infinite',
+                animationDirection: 'alternate'
+              }}
+            >
+              <circle cx="60" cy="60" r="55" stroke="var(--neon-lime)" strokeWidth="1" strokeDasharray="20 10" strokeLinecap="round" />
+              <path d="M60 5 L60 20" stroke="var(--neon-lime)" strokeWidth="1" />
+              <path d="M60 100 L60 115" stroke="var(--neon-lime)" strokeWidth="1" />
+              <path d="M5 60 L20 60" stroke="var(--neon-lime)" strokeWidth="1" />
+              <path d="M100 60 L115 60" stroke="var(--neon-lime)" strokeWidth="1" />
+            </svg>
+            
+            {/* Animated "thinking" dots */}
+            <div style={{
+              position: 'absolute',
+              top: '-10px',
+              right: '-5px',
+              display: 'flex',
+              gap: '3px',
+              padding: '3px 6px',
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              borderRadius: '10px',
+              border: '1px solid var(--neon-lime)'
+            }}>
+              <div style={{
+                width: '8px',
+                height: '8px',
+                backgroundColor: 'var(--neon-lime)',
+                borderRadius: '50%',
+                animationName: 'blink',
+                animationDuration: '1s',
+                animationIterationCount: 'infinite',
+                animationDelay: '0s'
+              }}></div>
+              <div style={{
+                width: '8px',
+                height: '8px',
+                backgroundColor: 'var(--neon-lime)',
+                borderRadius: '50%',
+                animationName: 'blink',
+                animationDuration: '1s',
+                animationIterationCount: 'infinite',
+                animationDelay: '0.2s'
+              }}></div>
+              <div style={{
+                width: '8px',
+                height: '8px',
+                backgroundColor: 'var(--neon-lime)',
+                borderRadius: '50%',
+                animationName: 'blink',
+                animationDuration: '1s',
+                animationIterationCount: 'infinite',
+                animationDelay: '0.4s'
+              }}></div>
+            </div>
           </div>
-          {/* Background elements for the card */}
+          
+          {/* AI Terminal Output with stacking bullet points - FIXED HEIGHT */}
+          <div style={{ 
+            width: '100%',
+            height: '280px', // Fixed height to prevent resizing
+            padding: '1rem',
+            borderRadius: '0.75rem',
+            backgroundColor: 'rgba(0,0,0,0.4)',
+            border: '1px solid rgba(168,255,96,0.3)',
+            backdropFilter: 'blur(5px)',
+            boxShadow: 'inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px rgba(168,255,96,0.2)',
+            position: 'relative',
+            overflow: 'auto',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            {/* Terminal header */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between',
+              marginBottom: '1rem',
+              borderBottom: '1px solid rgba(168,255,96,0.3)',
+              paddingBottom: '0.5rem',
+              flexShrink: 0
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#FF5F56' }}></div>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#FFBD2E' }}></div>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#27C93F' }}></div>
+              </div>
+              <div style={{ 
+                color: 'var(--neon-lime)', 
+                fontSize: '0.8rem', 
+                fontFamily: 'monospace'
+              }}>
+                ai-assistant@keyagents:~
+              </div>
+            </div>
+            
+            {/* Command prompt */}
+            <div style={{ 
+              marginBottom: '1rem', 
+              color: 'white', 
+              fontFamily: 'monospace', 
+              fontSize: '0.9rem',
+              flexShrink: 0
+            }}>
+              $ <span style={{ color: 'var(--electric-blue)' }}>generate_business_opportunities</span> --ai-powered --entrepreneurs
+            </div>
+            
+            {/* Bullet points container with fixed layout */}
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '1rem',
+              flexShrink: 0,
+              flexGrow: 1,
+              overflow: 'auto'
+            }}>
+              {bulletPoints.map((text, index) => (
+                <div 
+                  key={index}
+                  className={visibleBullets.includes(index) ? "bullet-animated" : ""}
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'flex-start',
+                    gap: '1rem',
+                    opacity: visibleBullets.includes(index) ? 1 : 0,
+                    transition: 'opacity 0.3s ease'
+                  }}
+                >
+                  <div 
+                    className="bullet-number"
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                      backgroundColor: 'rgba(168,255,96,0.2)',
+                      border: '2px solid var(--neon-lime)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'var(--neon-lime)',
+                      fontWeight: 'bold',
+                      fontFamily: 'monospace',
+                      boxShadow: '0 0 10px rgba(168,255,96,0.5)',
+                      flexShrink: 0
+                    }}
+                  >
+                    {index + 1}
+                  </div>
+                  <div style={{
+                    color: 'white',
+                    fontFamily: 'monospace',
+                    textShadow: '0 0 5px rgba(255,255,255,0.5)',
+                    whiteSpace: 'normal',
+                    wordBreak: 'break-word',
+                    flexGrow: 1
+                  }}>
+                    {text}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Terminal footer with cursor blinking */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              marginTop: '1rem', 
+              color: 'white', 
+              fontFamily: 'monospace', 
+              fontSize: '0.9rem',
+              flexShrink: 0
+            }}>
+              $ <span style={{ 
+                marginLeft: '0.5rem', 
+                width: '10px', 
+                height: '16px', 
+                backgroundColor: 'var(--neon-lime)', 
+                display: 'inline-block', 
+                animationName: 'blink',
+                animationDuration: '1s',
+                animationTimingFunction: 'step-end',
+                animationIterationCount: 'infinite'
+              }}></span>
+            </div>
+          </div>
+          
+          {/* Background gradient */}
           <div style={{ 
             position: 'absolute', 
             top: '-50%', 
             left: '-50%', 
             width: '200%', 
             height: '200%', 
-            background: 'radial-gradient(circle, rgba(168,255,96,0.2) 0%, rgba(168,255,96,0) 50%)',
+            background: 'radial-gradient(circle, rgba(168,255,96,0.05) 0%, rgba(168,255,96,0) 50%)',
             transform: 'rotate(30deg)',
-            zIndex: 0
+            zIndex: -1,
+            pointerEvents: 'none'
           }}></div>
         </div>
       </div>
