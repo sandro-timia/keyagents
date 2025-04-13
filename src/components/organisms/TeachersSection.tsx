@@ -55,8 +55,8 @@ export default function TeachersSection() {
           </p>
         </div>
         <div className="grid grid-3">
-          {/* Teacher Cards - Keep the same but add some animation classes */}
-          <div className="card" style={{ transform: 'translateY(0)', transition: 'transform 0.3s ease' }}>
+          {/* Teacher Cards with consistent hover styling */}
+          <div className="card">
             <div style={{ height: '200px', backgroundColor: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem' }}>
               <span style={{ fontSize: '2rem', color: 'white', fontWeight: 'bold' }}>A</span>
             </div>
