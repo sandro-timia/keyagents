@@ -1,6 +1,3 @@
-import Section from '../atoms/Section';
-import VideoSection from '../molecules/VideoSection';
-
 export default function CourseVideoSection() {
   return (
     <section id="video-section" className="pt-16 pb-16">

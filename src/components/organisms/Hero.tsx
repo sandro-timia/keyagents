@@ -4,6 +4,13 @@ import EmailSignupForm from '../molecules/EmailSignupForm';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
+// Declare Calendly on the window object
+declare global {
+  interface Window {
+    Calendly?: any;
+  }
+}
+
 export default function Hero() {
   // Initialize Calendly once component mounts
   useEffect(() => {
@@ -15,7 +22,7 @@ export default function Hero() {
   }, []);
 
   // Function to handle Calendly popup
-  const openCalendly = (e) => {
+  const openCalendly = (e: React.MouseEvent) => {
     e.preventDefault();
     if (window.Calendly) {
       window.Calendly.initPopupWidget({url: 'https://calendly.com/sandro-calzada/30min'});

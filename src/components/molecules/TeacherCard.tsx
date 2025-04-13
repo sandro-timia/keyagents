@@ -4,7 +4,7 @@ interface TeacherCardProps {
   name: string;
   role: string;
   bio: string;
-  imageUrl: string;
+  // imageUrl: string; // Remove or comment out if not used
   linkedInUrl?: string;
 }
 
@@ -12,7 +12,7 @@ export default function TeacherCard({
   name,
   role,
   bio,
-  imageUrl,
+  // imageUrl, // Remove or comment out if not used
   linkedInUrl
 }: TeacherCardProps) {
   return (
