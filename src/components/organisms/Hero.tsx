@@ -24,7 +24,7 @@ export default function Hero() {
   }, []);
 
   // Function to handle Calendly popup
-  const openCalendly = (e: React.MouseEvent) => {
+  const openCalendly = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (window.Calendly) {
       window.Calendly.initPopupWidget({url: 'https://calendly.com/sandro-calzada/30min'});
@@ -33,19 +33,26 @@ export default function Hero() {
   };
 
   return (
-    <div className="hero">
+    <div className="hero" style={{ padding: '6rem 0 8rem' }}>
       <div className="container grid">
-        <div>
-          <h1 className="mb-8">
+        <div style={{ 
+          position: 'relative',
+          zIndex: 1, 
+          borderRadius: '1rem',
+          padding: '2rem',
+          background: 'rgba(47,47,47,0.7)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <h1 className="mb-8" style={{ color: 'white' }}>
             Launch Your Digital Business with{' '}
             <span style={{ color: 'var(--neon-lime)' }}>AI-Powered</span> Strategies
           </h1>
-          <p className="mb-8">
+          <p className="mb-8" style={{ color: 'white' }}>
             KeyAgents helps entrepreneurs harness the power of AI to build, grow, and scale successful online businesses. Get notified when we launch!
           </p>
           <EmailSignupForm />
           
-          {/* Calendly Icon with Link - Added per orange instructions */}
+          {/* Calendly Icon with Link */}
           <div style={{ 
             marginTop: '2rem',
             backgroundColor: 'rgba(168, 255, 96, 0.15)',
@@ -54,7 +61,8 @@ export default function Hero() {
             display: 'flex',
             alignItems: 'center',
             gap: '1rem',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            backdropFilter: 'blur(5px)'
           }}
           onClick={openCalendly}>
             <div style={{ 
@@ -88,7 +96,7 @@ export default function Hero() {
               <h3 style={{ color: 'var(--neon-lime)', marginBottom: '0.25rem' }}>Got Questions?</h3>
               <a 
                 href="#" 
-                onClick={openCalendly}
+                onClick={(e) => e.preventDefault()}
                 style={{ color: 'white', textDecoration: 'none', fontWeight: '500' }}
               >
                 Schedule time with me
@@ -96,10 +104,33 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="card" style={{ height: '400px', background: 'linear-gradient(to bottom right, var(--electric-blue), var(--digital-violet))' }}>
-          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <h2 style={{ color: 'var(--neon-lime)', textAlign: 'center' }}>KeyAgents</h2>
+        <div className="card" style={{ 
+          height: '400px', 
+          background: 'linear-gradient(to bottom right, var(--electric-blue), var(--digital-violet))',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div className="parallax-effect" style={{ 
+            height: '100%', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            position: 'relative',
+            zIndex: 1
+          }}>
+            <h2 style={{ color: 'var(--neon-lime)', textAlign: 'center', fontSize: '2.5rem', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>KeyAgents</h2>
           </div>
+          {/* Background elements for the card */}
+          <div style={{ 
+            position: 'absolute', 
+            top: '-50%', 
+            left: '-50%', 
+            width: '200%', 
+            height: '200%', 
+            background: 'radial-gradient(circle, rgba(168,255,96,0.2) 0%, rgba(168,255,96,0) 50%)',
+            transform: 'rotate(30deg)',
+            zIndex: 0
+          }}></div>
         </div>
       </div>
       
