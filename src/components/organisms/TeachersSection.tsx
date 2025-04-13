@@ -1,122 +1,7 @@
 "use client";
 
-// Remove or comment out this import since we're not using it anymore
-// import EmailSignupForm from '../molecules/EmailSignupForm';
-import Script from 'next/script';
-import { useEffect, useRef, useState } from 'react';
-
-// Declare Calendly on the window object
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
-
+// TeachersSection doesn't need most of the code that was copied from Hero.tsx
 export default function TeachersSection() {
-  // Track all visible bullets
-  const [visibleBullets, setVisibleBullets] = useState<number[]>([]);
-  const animationRef = useRef<NodeJS.Timeout | null>(null);
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-
-  // Text content for the AI bullet points
-  const bulletPoints = [
-    "Crea un sitio web para tu negocio en días",
-    "Ahorra miles de dólares en agencias de desarrollo y marketing digital",
-    "Aprender una nueva forma de programar llamada vibe coding no necesitas ser ingeniero",
-    "Automatiza tu negocio, crea empleados digitales que se encarguen de las redes sociales, ventas, gestión de pedidos y todo lo que puedas imaginar"
-  ];
-  
-  // Initialize Calendly once component mounts
-  useEffect(() => {
-    // Add Calendly CSS
-    const link = document.createElement('link');
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-    
-    // Create styles for the bullet point animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes neonPulse {
-        0%, 100% { text-shadow: 0 0 5px rgba(168,255,96,0.8), 0 0 10px rgba(168,255,96,0.5), 0 0 15px rgba(168,255,96,0.3); }
-        50% { text-shadow: 0 0 10px rgba(168,255,96,1), 0 0 20px rgba(168,255,96,0.8), 0 0 30px rgba(168,255,96,0.5); }
-      }
-      
-      @keyframes scanline {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(100%); }
-      }
-      
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-      }
-      
-      @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
-      }
-      
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      .bullet-animated {
-        animation-name: fadeInUp;
-        animation-duration: 0.6s;
-        animation-fill-mode: forwards;
-      }
-      
-      .bullet-number {
-        position: relative;
-        overflow: hidden;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    // Sequential animation for bullet points
-    const startAnimation = () => {
-      // Show bullets one by one with a delay
-      for (let i = 0; i < bulletPoints.length; i++) {
-        const timer = setTimeout(() => {
-          setVisibleBullets(prev => [...prev, i]);
-        }, i * 2000); // 2 second delay between bullet points
-        
-        // Store the last timeout to clear it if needed
-        if (i === bulletPoints.length - 1) {
-          animationRef.current = timer;
-        }
-      }
-    };
-    
-    // Start the animation sequence after a brief delay
-    const initialDelay = setTimeout(startAnimation, 1000);
-    
-    // Clean up function
-    return () => {
-      if (link.parentNode) document.head.removeChild(link);
-      if (style.parentNode) document.head.removeChild(style);
-      if (initialDelay) clearTimeout(initialDelay);
-      if (animationRef.current) clearTimeout(animationRef.current);
-      
-      // Clear all potential timeouts
-      for (let i = 0; i < bulletPoints.length; i++) {
-        clearTimeout(i * 2000 + 1000);
-      }
-    };
-  }, [bulletPoints.length]); // Add bulletPoints.length to the dependency array
-
   return (
     <section id="teachers" style={{ 
       position: 'relative',
@@ -191,7 +76,7 @@ export default function TeachersSection() {
             <div style={{ height: '200px', backgroundColor: 'var(--digital-violet)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem' }}>
               <span style={{ fontSize: '2rem', color: 'white', fontWeight: 'bold' }}>E</span>
             </div>
-            <h3>Eduardo O&apos;brien</h3>
+            <h3>Eduardo O&apos;Brien</h3>
             <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>Business Development Coach</p>
             <p>Sarah specializes in helping startups build scalable business models using AI. Former tech executive with experience at Google and Meta.</p>
             <a href="https://linkedin.com/in/sarahchen" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
