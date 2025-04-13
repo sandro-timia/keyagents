@@ -178,9 +178,26 @@ export default function Hero() {
             <span style={{ color: 'var(--neon-lime)' }}>AI-Powered</span> Strategies
           </h1>
           <p className="mb-8" style={{ color: 'white' }}>
-            KeyAgency helps entrepreneurs harness the power of AI to build, grow, and scale successful online businesses. Get notified when we launch!
+            KeyAgency ayuda a los emprendedores a explotar el potencial de la IA para construir, crecer y escalar negocios exitosos en línea. ¡Recibe la notificación cuando lancemos!
           </p>
-          {/* Removed EmailSignupForm from here */}
+
+          {/* Vimeo video as requested in the orange instructions */}
+          <div style={{ 
+            marginBottom: '2rem', 
+            borderRadius: '0.75rem',
+            overflow: 'hidden',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
+          }}>
+            <iframe 
+              title="vimeo-player" 
+              src="https://player.vimeo.com/video/653744811?h=b6d18998f0" 
+              width="100%" 
+              height="300" 
+              frameBorder="0" 
+              allowFullScreen
+              style={{ display: 'block' }}
+            ></iframe>
+          </div>
         </div>
         <div style={{ 
           background: 'linear-gradient(to bottom right, var(--electric-blue), var(--digital-violet))',
