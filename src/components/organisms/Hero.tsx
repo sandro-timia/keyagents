@@ -1,6 +1,11 @@
 "use client";
 
-import EmailSignupForm from '../molecules/EmailSignupForm';
+// Option 1: Remove the unused import
+// import EmailSignupForm from '../molecules/EmailSignupForm';
+
+// Or Option 2: Comment it out
+/* import EmailSignupForm from '../molecules/EmailSignupForm'; */
+
 import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
 
@@ -114,7 +119,7 @@ export default function Hero() {
         clearTimeout(i * 2000 + 1000);
       }
     };
-  }, []); // Empty dependency array to run only once
+  }, [bulletPoints.length]); // Add bulletPoints.length as a dependency
 
   // Function to handle Calendly popup
   const openCalendly = (e: React.MouseEvent<HTMLDivElement>) => {
