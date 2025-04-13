@@ -1,5 +1,3 @@
-import SocialIcon from '../atoms/SocialIcon';
-
 export default function SocialMediaLinks() {
   return (
     <div style={{ 
