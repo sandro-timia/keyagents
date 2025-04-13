@@ -12,7 +12,7 @@ export default function SocialMediaLinks() {
     }}>
       {/* Facebook */}
       <a
-        href="https://facebook.com/keyagents"
+        href="https://facebook.com/keyagency"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook"
@@ -41,7 +41,7 @@ export default function SocialMediaLinks() {
       
       {/* YouTube (Replaced TikTok) */}
       <a
-        href="https://youtube.com/@keyagents"
+        href="https://youtube.com/@keyagency"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="YouTube"
@@ -70,7 +70,7 @@ export default function SocialMediaLinks() {
       
       {/* LinkedIn */}
       <a
-        href="https://linkedin.com/company/keyagents"
+        href="https://linkedin.com/company/keyagency"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"

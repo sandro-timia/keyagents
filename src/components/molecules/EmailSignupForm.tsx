@@ -37,7 +37,7 @@ export default function EmailSignupForm() {
       {success ? (
         <div style={{ backgroundColor: 'var(--neon-lime)', padding: '1rem', borderRadius: '0.5rem', textAlign: 'center', color: 'var(--dark-gray)' }}>
           <p style={{ fontWeight: '500' }}>Thank you for signing up!</p>
-          <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>We&apos;ll notify you when KeyAgents goes live.</p>
+          <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>We&apos;ll notify you when KeyAgency goes live.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>

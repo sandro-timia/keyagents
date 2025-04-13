@@ -53,9 +53,6 @@ export default function LandingPage() {
       
       <Hero />
       
-      {/* Add a divider between sections */}
-      <div className="section-divider"></div>
-      
       <TeachersSection />
       
       {/* Add another divider before footer */}

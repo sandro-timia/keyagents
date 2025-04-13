@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="mb-8">
             <div className="mb-4">
               <div style={{ backgroundColor: 'var(--electric-blue)', color: 'white', padding: '0.75rem', borderRadius: '0.5rem', display: 'inline-block', fontWeight: 'bold', backdropFilter: 'blur(5px)' }}>
-                KeyAgents
+                KeyAgency
               </div>
             </div>
             <p style={{ color: 'white' }}>
@@ -47,8 +47,8 @@ export default function Footer() {
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" fill="var(--neon-lime)" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" fill="var(--neon-lime)" />
                 </svg>
-                <a href="mailto:contact@keyagents.com" style={{ color: 'white', textDecoration: 'none' }}>
-                  contact@keyagents.com
+                <a href="mailto:contact@keyagency.com" style={{ color: 'white', textDecoration: 'none' }}>
+                  contact@keyagency.com
                 </a>
               </li>
             </ul>
@@ -72,7 +72,7 @@ export default function Footer() {
         </div>
         
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '2rem', paddingTop: '2rem', textAlign: 'center' }}>
-          <p style={{ color: 'white', opacity: 0.7 }}>© {currentYear} KeyAgents. All rights reserved.</p>
+          <p style={{ color: 'white', opacity: 0.7 }}>© {currentYear} KeyAgency. All rights reserved.</p>
         </div>
       </div>
     </footer>

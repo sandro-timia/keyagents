@@ -48,10 +48,10 @@ export default function TeachersSection() {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="text-center mb-8" style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem', backdropFilter: 'blur(5px)', borderRadius: '1rem', backgroundColor: 'rgba(47,47,47,0.3)' }}>
           <h2 style={{ color: 'var(--neon-lime)', marginBottom: '1rem', fontSize: '2.5rem' }}>
-            Know Your <span style={{ color: 'white' }}>Teachers</span>
+            Conoce a los <span style={{ color: 'white' }}>Profesores</span>
           </h2>
           <p style={{ color: 'white', textShadow: '0 1px 3px rgba(0,0,0,0.7)', fontSize: '1.125rem' }}>
-            Learn from industry experts who have built successful digital businesses and mastered AI tools to stay ahead of the competition.
+          Aprende de expertos de la industria que han construido negocios digitales exitosos y dominado herramientas de IA para mantenerse por delante de la competencia.
           </p>
         </div>
         <div className="grid grid-3">

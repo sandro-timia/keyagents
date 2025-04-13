@@ -17,6 +17,9 @@ export default function Hero() {
   // Track all visible bullets
   const [visibleBullets, setVisibleBullets] = useState<number[]>([]);
   const animationRef = useRef<NodeJS.Timeout | null>(null);
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
   // Text content for the AI bullet points
   const bulletPoints = [
@@ -122,6 +125,30 @@ export default function Hero() {
     return false;
   };
 
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    
+    if (!email) {
+      setError('Por favor, introduce tu email.');
+      return;
+    }
+    
+    if (!email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)) {
+      setError('Por favor, introduce un email válido.');
+      return;
+    }
+    
+    // Here you would send the email to your backend or email service
+    console.log('Subscribing email:', email);
+    setSuccess(true);
+    setEmail('');
+    
+    // Reset success message after 3 seconds
+    setTimeout(() => setSuccess(false), 3000);
+  };
+
   return (
     <div className="hero" style={{ padding: '6rem 0 8rem' }}>
       <div className="container" style={{ 
@@ -146,61 +173,9 @@ export default function Hero() {
             <span style={{ color: 'var(--neon-lime)' }}>AI-Powered</span> Strategies
           </h1>
           <p className="mb-8" style={{ color: 'white' }}>
-            KeyAgents helps entrepreneurs harness the power of AI to build, grow, and scale successful online businesses. Get notified when we launch!
+            KeyAgency helps entrepreneurs harness the power of AI to build, grow, and scale successful online businesses. Get notified when we launch!
           </p>
-          <EmailSignupForm />
-          
-          {/* Calendly Icon with Link */}
-          <div style={{ 
-            marginTop: 'auto',
-            backgroundColor: 'rgba(168, 255, 96, 0.15)',
-            borderRadius: '0.75rem',
-            padding: '1.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            cursor: 'pointer',
-            backdropFilter: 'blur(5px)'
-          }}
-          onClick={openCalendly}>
-            <div style={{ 
-              backgroundColor: 'var(--neon-lime)',
-              width: '3.5rem',
-              height: '3.5rem',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="var(--dark-gray)" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-                <circle cx="12" cy="16" r="2"></circle>
-              </svg>
-            </div>
-            <div>
-              <h3 style={{ color: 'var(--neon-lime)', marginBottom: '0.25rem' }}>Got Questions?</h3>
-              <a 
-                href="#" 
-                onClick={(e) => e.preventDefault()}
-                style={{ color: 'white', textDecoration: 'none', fontWeight: '500' }}
-              >
-                Schedule time with me
-              </a>
-            </div>
-          </div>
+          {/* Removed EmailSignupForm from here */}
         </div>
         <div style={{ 
           background: 'linear-gradient(to bottom right, var(--electric-blue), var(--digital-violet))',
@@ -228,7 +203,7 @@ export default function Hero() {
             animationDuration: '2s',
             animationIterationCount: 'infinite',
             fontFamily: 'monospace'
-          }}>KeyAgents</h2>
+          }}>KeyAgency</h2>
           
           {/* AI Robot with animated effects */}
           <div className="ai-robot-container" style={{
@@ -335,7 +310,7 @@ export default function Hero() {
           {/* AI Terminal Output with stacking bullet points - FIXED HEIGHT */}
           <div style={{ 
             width: '100%',
-            height: '280px', // Fixed height to prevent resizing
+            height: '400px', // Increased height to fit all bullets without scrolling
             padding: '1rem',
             borderRadius: '0.75rem',
             backgroundColor: 'rgba(0,0,0,0.4)',
@@ -343,7 +318,6 @@ export default function Hero() {
             backdropFilter: 'blur(5px)',
             boxShadow: 'inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px rgba(168,255,96,0.2)',
             position: 'relative',
-            overflow: 'auto',
             display: 'flex',
             flexDirection: 'column'
           }}>
@@ -367,7 +341,7 @@ export default function Hero() {
                 fontSize: '0.8rem', 
                 fontFamily: 'monospace'
               }}>
-                ai-assistant@keyagents:~
+                ai-assistant@keyagency:~
               </div>
             </div>
             
@@ -379,7 +353,7 @@ export default function Hero() {
               fontSize: '0.9rem',
               flexShrink: 0
             }}>
-              $ <span style={{ color: 'var(--electric-blue)' }}>generate_business_opportunities</span> --ai-powered --entrepreneurs
+              $ <span style={{ color: 'var(--electric-blue)' }}>def generar_oportunidades_de_negocio</span> --ai-powered --entrepreneurs
             </div>
             
             {/* Bullet points container with fixed layout */}
@@ -388,8 +362,7 @@ export default function Hero() {
               flexDirection: 'column', 
               gap: '1rem',
               flexShrink: 0,
-              flexGrow: 1,
-              overflow: 'auto'
+              flexGrow: 1
             }}>
               {bulletPoints.map((text, index) => (
                 <div 
@@ -473,6 +446,158 @@ export default function Hero() {
             zIndex: -1,
             pointerEvents: 'none'
           }}></div>
+        </div>
+      </div>
+      
+      {/* COMBINED SECTION: both email signup and Calendly questions */}
+      <div style={{
+        maxWidth: '1000px',
+        margin: '3rem auto 0',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '2rem'
+      }}>
+        {/* Email signup form - moved as per orange instructions */}
+        <div style={{
+          backgroundColor: 'rgba(58, 141, 255, 0.15)', 
+          borderRadius: '1rem',
+          padding: '2rem',
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+          border: '1px solid rgba(58, 141, 255, 0.3)'
+        }}>
+          <h3 style={{ 
+            color: 'white', 
+            textAlign: 'center', 
+            marginBottom: '1.5rem',
+            fontSize: '1.8rem',
+            textShadow: '0 0 10px rgba(58, 141, 255, 0.7)'
+          }}>
+            Mantente informado sobre nuestro lanzamiento
+          </h3>
+          
+          <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <div style={{ 
+              position: 'relative',
+              marginBottom: error ? '3rem' : '1.5rem'
+            }}>
+              <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Tu dirección de email" 
+                style={{
+                  width: '100%',
+                  padding: '1rem 10rem 1rem 1.5rem',
+                  borderRadius: '999px',
+                  border: '2px solid rgba(168, 255, 96, 0.5)',
+                  backgroundColor: 'rgba(47, 47, 47, 0.7)',
+                  color: 'white',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  boxShadow: '0 0 15px rgba(168,255,96,0.2)',
+                  transition: 'all 0.3s ease'
+                }}
+              />
+              <button 
+                type="submit"
+                style={{
+                  position: 'absolute',
+                  right: '5px',
+                  top: '5px',
+                  bottom: '5px',
+                  padding: '0.5rem 1.5rem',
+                  borderRadius: '999px',
+                  border: 'none',
+                  backgroundColor: 'var(--neon-lime)',
+                  color: 'var(--dark-gray)',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 0 10px rgba(168,255,96,0.5)'
+                }}
+              >
+                Notificarme
+              </button>
+              
+              {error && (
+                <div style={{ 
+                  position: 'absolute', 
+                  bottom: '-2rem', 
+                  left: '0', 
+                  color: '#FF5F56',
+                  fontSize: '0.9rem'
+                }}>
+                  {error}
+                </div>
+              )}
+              
+              {success && (
+                <div style={{ 
+                  position: 'absolute', 
+                  bottom: '-2rem', 
+                  left: '0', 
+                  color: 'var(--neon-lime)',
+                  fontSize: '0.9rem'
+                }}>
+                  ¡Gracias! Te notificaremos cuando lancemos.
+                </div>
+              )}
+            </div>
+          </form>
+        </div>
+      
+        {/* Calendly section */}
+        <div style={{ 
+          backgroundColor: 'rgba(47, 79, 47, 0.8)', 
+          borderRadius: '1rem',
+          padding: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1.5rem',
+          cursor: 'pointer',
+          backdropFilter: 'blur(5px)',
+          boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+        }}
+        onClick={openCalendly}>
+          <div style={{ 
+            backgroundColor: 'var(--neon-lime)',
+            width: '3.5rem',
+            height: '3.5rem',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0
+          }}>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="var(--dark-gray)" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <circle cx="12" cy="16" r="2"></circle>
+            </svg>
+          </div>
+          <div>
+            <h3 style={{ color: 'var(--neon-lime)', marginBottom: '0.25rem', fontSize: '1.5rem' }}>¿Tienes preguntas?</h3>
+            <a 
+              href="#" 
+              onClick={(e) => e.preventDefault()}
+              style={{ color: 'white', textDecoration: 'none', fontWeight: '500' }}
+            >
+              Resolvemos tus dudas, agenda una reunión gratuita
+            </a>
+          </div>
         </div>
       </div>
       
