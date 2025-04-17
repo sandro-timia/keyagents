@@ -23,8 +23,9 @@ export default function Hero() {
   const [visibleBullets, setVisibleBullets] = useState<number[]>([]);
   const animationRef = useRef<NodeJS.Timeout | null>(null);
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  // Comment out unused state variables
+  // const [error, setError] = useState('');
+  // const [success, setSuccess] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   // Text content for the AI bullet points
@@ -137,6 +138,8 @@ export default function Hero() {
     return false;
   };
 
+  // Comment out unused function
+  /* 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -160,6 +163,7 @@ export default function Hero() {
     // Reset success message after 3 seconds
     setTimeout(() => setSuccess(false), 3000);
   };
+  */
 
   return (
     <div className="hero" style={{ padding: '6rem 0 8rem' }}>
