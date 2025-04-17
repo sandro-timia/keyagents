@@ -1,7 +1,24 @@
 "use client";
 
+import { useState, useEffect } from 'react';
+
 // TeachersSection doesn't need most of the code that was copied from Hero.tsx
 export default function TeachersSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    
+    // Initial check
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section id="teachers" style={{ 
       position: 'relative',
@@ -49,11 +66,26 @@ export default function TeachersSection() {
 
       {/* Section Content */}
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="text-center mb-8" style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem', backdropFilter: 'blur(5px)', borderRadius: '1rem', backgroundColor: 'rgba(47,47,47,0.3)' }}>
-          <h2 style={{ color: 'var(--neon-lime)', marginBottom: '1rem', fontSize: '2.5rem' }}>
+        <div className="text-center mb-8" style={{ 
+          maxWidth: '800px', 
+          margin: '0 auto', 
+          padding: '2rem', 
+          backdropFilter: 'blur(5px)', 
+          borderRadius: '1rem', 
+          backgroundColor: 'rgba(47,47,47,0.3)',
+        }}>
+          <h2 style={{ 
+            color: 'var(--neon-lime)', 
+            marginBottom: '1rem', 
+            fontSize: isMobile ? '1.75rem' : '2.5rem'
+          }}>
             Conoce a los <span style={{ color: 'white' }}>Profesores</span>
           </h2>
-          <p style={{ color: 'white', textShadow: '0 1px 3px rgba(0,0,0,0.7)', fontSize: '1.125rem' }}>
+          <p style={{ 
+            color: 'white', 
+            textShadow: '0 1px 3px rgba(0,0,0,0.7)', 
+            fontSize: isMobile ? '1rem' : '1.125rem'
+          }}>
           Aprende de expertos de la industria que han construido negocios digitales exitosos y dominado herramientas de IA para mantenerse por delante de la competencia.
           </p>
         </div>

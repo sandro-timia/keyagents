@@ -1,6 +1,28 @@
+"use client";
+
+import { useEffect, useState } from 'react';
+
 export default function SocialMediaLinks() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if viewport is mobile sized
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
   return (
-    <div style={{ 
+    <div className={isMobile ? "social-media-links-mobile" : ""} style={{ 
       position: 'fixed', 
       right: '1rem', 
       top: '50%', 
@@ -23,7 +45,7 @@ export default function SocialMediaLinks() {
           width: '2.5rem',
           height: '2.5rem',
           borderRadius: '9999px',
-          backgroundColor: 'var(--electric-blue)',
+          backgroundColor: '#000000',
           color: 'white',
           transition: 'background-color 0.3s'
         }}

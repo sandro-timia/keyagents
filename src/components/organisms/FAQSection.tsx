@@ -1,12 +1,30 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function FAQSection() {
   // State to track if FAQ section is visible
   const [isFAQVisible, setIsFAQVisible] = useState(false);
   // Track which FAQ is expanded, null if none
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  // Track if viewport is mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile viewport on component mount and resize
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   // Toggle FAQ section visibility
   const toggleFAQVisibility = () => {
@@ -73,14 +91,14 @@ export default function FAQSection() {
   return (
     <section id="faq" style={{ 
       position: 'relative',
-      padding: '4rem 0 6rem',
+      padding: isMobile ? '3rem 0 4rem' : '4rem 0 6rem',
       background: 'linear-gradient(to bottom, rgba(26,32,44,0.8), rgba(17,24,39,0.9))',
       color: 'white'
     }}>
       {/* FAQ Button - now using the site's color palette */}
       <div style={{
         position: 'absolute',
-        top: '-2rem',
+        top: isMobile ? '-1.5rem' : '-2rem',
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 10
@@ -92,8 +110,8 @@ export default function FAQSection() {
             color: 'var(--dark-gray)',
             border: 'none',
             borderRadius: '2rem',
-            padding: '0.75rem 2rem',
-            fontSize: '1.25rem',
+            padding: isMobile ? '0.5rem 1.5rem' : '0.75rem 2rem',
+            fontSize: isMobile ? '1rem' : '1.25rem',
             fontWeight: 'bold',
             display: 'flex',
             alignItems: 'center',
@@ -105,8 +123,8 @@ export default function FAQSection() {
         >
           FAQ
           <svg 
-            width="24" 
-            height="24" 
+            width={isMobile ? "20" : "24"} 
+            height={isMobile ? "20" : "24"} 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -140,8 +158,8 @@ export default function FAQSection() {
           <>
             <h2 style={{ 
               textAlign: 'center', 
-              fontSize: '2.5rem', 
-              marginBottom: '3rem',
+              fontSize: isMobile ? '1.75rem' : '2.5rem', 
+              marginBottom: isMobile ? '2rem' : '3rem',
               color: 'white',
               animation: 'fadeIn 0.5s ease'
             }}>
@@ -167,7 +185,7 @@ export default function FAQSection() {
                   <div 
                     onClick={() => toggleFaq(index)}
                     style={{
-                      padding: '1.25rem',
+                      padding: isMobile ? '1rem' : '1.25rem',
                       cursor: 'pointer',
                       display: 'flex',
                       justifyContent: 'space-between',
@@ -178,7 +196,7 @@ export default function FAQSection() {
                   >
                     <h3 style={{ 
                       margin: 0, 
-                      fontSize: '1.125rem',
+                      fontSize: isMobile ? '0.95rem' : '1.125rem',
                       fontWeight: expandedIndex === index ? 'bold' : 'normal', 
                       color: expandedIndex === index ? 'var(--neon-lime)' : 'white'
                     }}>
@@ -188,13 +206,15 @@ export default function FAQSection() {
                       transition: 'transform 0.3s ease',
                       transform: expandedIndex === index ? 'rotate(45deg)' : 'rotate(0deg)',
                       color: expandedIndex === index ? 'var(--neon-lime)' : 'white',
-                      fontSize: '1.5rem',
-                      fontWeight: 'lighter'
+                      fontSize: isMobile ? '1.25rem' : '1.5rem',
+                      fontWeight: 'lighter',
+                      minWidth: '1rem',
+                      marginLeft: '0.5rem'
                     }}>+</span>
                   </div>
                   
                   <div style={{
-                    padding: expandedIndex === index ? '0 1.25rem 1.25rem' : '0 1.25rem',
+                    padding: expandedIndex === index ? (isMobile ? '0 1rem 1rem' : '0 1.25rem 1.25rem') : '0 1.25rem',
                     maxHeight: expandedIndex === index ? '1000px' : '0',
                     opacity: expandedIndex === index ? 1 : 0,
                     overflow: 'hidden',
@@ -203,7 +223,8 @@ export default function FAQSection() {
                     <p style={{
                       margin: '0',
                       lineHeight: '1.6',
-                      color: 'rgba(255, 255, 255, 0.8)'
+                      color: 'rgba(255, 255, 255, 0.8)',
+                      fontSize: isMobile ? '0.9rem' : 'inherit'
                     }}>{faq.answer}</p>
                   </div>
                 </div>
