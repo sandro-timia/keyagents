@@ -2,7 +2,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer style={{ 
+    <footer id="footer" style={{ 
       position: 'relative',
       padding: '4rem 1rem 2rem',
       overflow: 'hidden'

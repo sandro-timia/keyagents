@@ -5,6 +5,7 @@ import TeachersSection from '../organisms/TeachersSection';
 import FAQSection from '../organisms/FAQSection';
 import Footer from '../organisms/Footer';
 import SocialMediaLinks from '../molecules/SocialMediaLinks';
+import Navbar from '../molecules/Navbar';
 
 export default function LandingPage() {
   return (
@@ -51,6 +52,9 @@ export default function LandingPage() {
         animation: 'float 20s infinite ease-in-out reverse',
         pointerEvents: 'none'
       }}></div>
+      
+      {/* Navbar - added at the top of the page */}
+      <Navbar />
       
       <Hero />
       
