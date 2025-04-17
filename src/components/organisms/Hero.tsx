@@ -611,7 +611,7 @@ export default function Hero() {
             </svg>
           </div>
           <div>
-            <h3 style={{ color: 'var(--neon-lime)', marginBottom: '0.25rem', fontSize: '1.5rem' }}>¿Tienes preguntas?</h3>
+            <h3 style={{ color: 'var(--neon-lime)', marginBottom: '0.25rem', fontSize: '1.5rem' }}>¿Aún tienes preguntas?</h3>
             <a 
               href="#" 
               onClick={(e) => e.preventDefault()}
