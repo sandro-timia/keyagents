@@ -79,6 +79,11 @@ export default function Hero() {
         }
       }
       
+      @keyframes blinkCursor {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+      
       .bullet-animated {
         animation-name: fadeInUp;
         animation-duration: 0.6s;
@@ -223,7 +228,7 @@ export default function Hero() {
           justifyContent: 'flex-start',
           padding: '2rem',
           height: '100%',
-          minHeight: '720px',
+          minHeight: '780px',
           width: '100%',
         }}>
           {/* Futuristic design elements */}
@@ -314,7 +319,7 @@ export default function Hero() {
             color: 'white',
             position: 'relative',
             overflow: 'hidden',
-            height: '420px',
+            height: '480px',
             display: 'flex',
             flexDirection: 'column',
             marginTop: 'auto',
@@ -383,6 +388,28 @@ export default function Hero() {
                     </div>
                   </div>
                 ))}
+                
+                {/* Blinking cursor after last bullet */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  marginTop: '0.5rem',
+                  marginLeft: '2rem'
+                }}>
+                  <span style={{ 
+                    color: 'var(--neon-lime)', 
+                    fontWeight: 'bold',
+                    marginRight: '0.5rem'
+                  }}>
+                    &gt;
+                  </span>
+                  <div style={{
+                    width: '8px',
+                    height: '16px',
+                    backgroundColor: 'var(--neon-lime)',
+                    animation: 'blinkCursor 1s infinite',
+                  }}></div>
+                </div>
               </div>
             </div>
           </div>
