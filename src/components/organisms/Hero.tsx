@@ -479,7 +479,7 @@ export default function Hero() {
         flexDirection: 'column',
         gap: '2rem'
       }}>
-        {/* Email signup form - moved as per orange instructions */}
+        {/* Email signup form with Calendar section integrated */}
         <div style={{
           backgroundColor: 'rgba(58, 141, 255, 0.15)', 
           borderRadius: '1rem',
@@ -498,7 +498,7 @@ export default function Hero() {
             Mantente informado sobre nuestro lanzamiento
           </h3>
           
-          <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
             <div style={{ 
               position: 'relative',
               marginBottom: error ? '3rem' : '1.5rem'
@@ -567,58 +567,68 @@ export default function Hero() {
               )}
             </div>
           </form>
-        </div>
-      
-        {/* Calendly section */}
-        <div style={{ 
-          backgroundColor: 'rgba(47, 79, 47, 0.8)', 
-          borderRadius: '1rem',
-          padding: '1.5rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1.5rem',
-          cursor: 'pointer',
-          backdropFilter: 'blur(5px)',
-          boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
-        }}
-        onClick={openCalendly}>
+          
+          {/* Divider between the two sections */}
           <div style={{ 
-            backgroundColor: 'var(--neon-lime)',
-            width: '3.5rem',
-            height: '3.5rem',
-            borderRadius: '50%',
+            width: '100%', 
+            height: '1px', 
+            background: 'linear-gradient(to right, transparent, rgba(168, 255, 96, 0.5), transparent)',
+            margin: '1rem 0 2rem'
+          }}></div>
+          
+          {/* Calendly section - now inside the same container */}
+          <div style={{ 
+            backgroundColor: 'rgba(47, 79, 47, 0.5)', 
+            borderRadius: '1rem',
+            padding: '1.5rem',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0
-          }}>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="var(--dark-gray)" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-              <circle cx="12" cy="16" r="2"></circle>
-            </svg>
-          </div>
-          <div>
-            <h3 style={{ color: 'var(--neon-lime)', marginBottom: '0.25rem', fontSize: '1.5rem' }}>¿Aún tienes preguntas?</h3>
-            <a 
-              href="#" 
-              onClick={(e) => e.preventDefault()}
-              style={{ color: 'white', textDecoration: 'none', fontWeight: '500' }}
-            >
-              Resolvemos tus dudas, agenda una reunión gratuita
-            </a>
+            gap: '1.5rem',
+            cursor: 'pointer',
+            backdropFilter: 'blur(5px)',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
+            maxWidth: '800px',
+            margin: '0 auto'
+          }}
+          onClick={openCalendly}>
+            <div style={{ 
+              backgroundColor: 'var(--neon-lime)',
+              width: '3.5rem',
+              height: '3.5rem',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="var(--dark-gray)" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+                <circle cx="12" cy="16" r="2"></circle>
+              </svg>
+            </div>
+            <div>
+              <h3 style={{ color: 'var(--neon-lime)', marginBottom: '0.25rem', fontSize: '1.5rem' }}>¿Aún tienes preguntas?</h3>
+              <a 
+                href="#" 
+                onClick={(e) => e.preventDefault()}
+                style={{ color: 'white', textDecoration: 'none', fontWeight: '500' }}
+              >
+                Resolvemos tus dudas, agenda una reunión gratuita
+              </a>
+            </div>
           </div>
         </div>
       </div>

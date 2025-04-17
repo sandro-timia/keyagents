@@ -2,6 +2,7 @@
 
 import Hero from '../organisms/Hero';
 import TeachersSection from '../organisms/TeachersSection';
+import FAQSection from '../organisms/FAQSection';
 import Footer from '../organisms/Footer';
 import SocialMediaLinks from '../molecules/SocialMediaLinks';
 
@@ -54,6 +55,8 @@ export default function LandingPage() {
       <Hero />
       
       <TeachersSection />
+      
+      <FAQSection />
       
       {/* Add another divider before footer */}
       <div className="section-divider" style={{ transform: 'rotate(180deg)' }}></div>
