@@ -22,7 +22,8 @@ export default function Hero() {
   // Track all visible bullets
   const [visibleBullets, setVisibleBullets] = useState<number[]>([]);
   const animationRef = useRef<NodeJS.Timeout | null>(null);
-  const [email, setEmail] = useState('');
+  // Comment out unused email state
+  // const [email, setEmail] = useState('');
   // Comment out unused state variables
   // const [error, setError] = useState('');
   // const [success, setSuccess] = useState(false);
