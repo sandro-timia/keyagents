@@ -32,7 +32,7 @@ export default function Navbar() {
   // Common style for navigation buttons
   const navButtonStyle = {
     color: 'white',
-    fontWeight: '500',
+    fontWeight: 'bold',
     background: 'none',
     border: 'none',
     cursor: 'pointer',
@@ -41,6 +41,7 @@ export default function Navbar() {
     letterSpacing: '0.5px',
     textTransform: 'uppercase' as const,
     fontSize: '0.9rem',
+    textDecoration: 'underline',
   };
 
   return (
