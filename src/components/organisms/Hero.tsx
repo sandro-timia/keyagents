@@ -171,6 +171,23 @@ export default function Hero() {
   };
   */
 
+  // 1. Increase the terminal height further for mobile
+  useEffect(() => {
+    // Add mobile detection for terminal height adjustment
+    const checkMobile = () => {
+      const isMobileView = window.innerWidth <= 768;
+      setIsMobile(isMobileView);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
   return (
     <div className="hero" style={{ padding: '6rem 0 8rem' }}>
       <div className="container" style={{ 
@@ -228,7 +245,7 @@ export default function Hero() {
           justifyContent: 'flex-start',
           padding: '2rem',
           height: '100%',
-          minHeight: '780px',
+          minHeight: isMobile ? '900px' : '780px', // Increased from 820px to 900px for mobile
           width: '100%',
         }}>
           {/* Futuristic design elements */}
@@ -319,7 +336,7 @@ export default function Hero() {
             color: 'white',
             position: 'relative',
             overflow: 'hidden',
-            height: '480px',
+            height: isMobile ? '600px' : '480px', // Changed from 520px to 600px for mobile
             display: 'flex',
             flexDirection: 'column',
             marginTop: 'auto',
@@ -383,7 +400,7 @@ export default function Hero() {
                     }}>
                       {index + 1}
                     </div>
-                    <div style={{ flex: 1, overflowWrap: 'break-word' }}>
+                    <div style={{ flex: 1, overflowWrap: 'break-word', fontSize: isMobile ? '0.85rem' : 'inherit' }}>
                       {point}
                     </div>
                   </div>
