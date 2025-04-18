@@ -28,7 +28,7 @@ export default function EmailSubscriptionSection() {
       setMessageType('success');
       setEmail('');
       setHasSubscribed(true);
-    } catch (error) {
+    } catch (_) {
       setMessage('Hubo un error al procesar tu solicitud. Intenta nuevamente.');
       setMessageType('error');
     } finally {
