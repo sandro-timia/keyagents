@@ -85,7 +85,7 @@ export default function Navbar() {
               color: 'var(--dark-gray)',
               fontWeight: 'bold',
               fontSize: '1.4rem',
-            }}>K</span>
+            }}>V</span>
           </div>
           <div style={{
             fontWeight: 'bold',
@@ -93,7 +93,7 @@ export default function Navbar() {
             color: 'white',
             letterSpacing: '0.5px',
           }}>
-            <span style={{ color: 'var(--neon-lime)' }}>Key</span>Agency
+            <span style={{ color: 'var(--neon-lime)' }}>Vibe</span>Labb
           </div>
         </div>
 
@@ -110,7 +110,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('teachers')}
               style={navButtonStyle}
             >
-              Nosotros
+              Profesores
               <span style={{
                 position: 'absolute',
                 bottom: 0,

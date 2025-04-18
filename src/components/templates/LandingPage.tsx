@@ -6,6 +6,7 @@ import FAQSection from '../organisms/FAQSection';
 import Footer from '../organisms/Footer';
 import SocialMediaLinks from '../molecules/SocialMediaLinks';
 import Navbar from '../molecules/Navbar';
+import EmailSubscriptionSection from '../organisms/EmailSubscriptionSection';
 
 export default function LandingPage() {
   return (
@@ -57,6 +58,8 @@ export default function LandingPage() {
       <Navbar />
       
       <Hero />
+      
+      <EmailSubscriptionSection />
       
       <TeachersSection />
       

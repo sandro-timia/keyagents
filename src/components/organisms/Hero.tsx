@@ -189,12 +189,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="hero" style={{ padding: '6rem 0 8rem' }}>
+    <div className="hero" style={{ padding: '6rem 0 4rem' }}>
       <div className="container" style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '1.5rem',
+        gap: '1rem',
         minHeight: '500px',
+        margin: '100 100px',
       }}>
         <div style={{ 
           position: 'relative',
@@ -209,11 +210,11 @@ export default function Hero() {
           width: '100%',
         }}>
           <h1 className="mb-8" style={{ color: 'white' }}>
-            Launch Your Digital Business with{' '}
-            <span style={{ color: 'var(--neon-lime)' }}>AI-Powered</span> Strategies
+            Crea tu Negocio Digital con{' '}
+            <span style={{ color: 'var(--neon-lime)' }}>Vibe Coding</span>
           </h1>
           <p className="mb-8" style={{ color: 'white' }}>
-            KeyAgency ayuda a los emprendedores a explotar el potencial de la IA para construir, crecer y escalar negocios exitosos en línea. ¡Recibe la notificación cuando lancemos!
+            VibeLabb ayuda a los emprendedores a explotar el potencial de la IA para construir, crecer y escalar negocios exitosos en línea. ¡Recibe la notificación cuando lancemos!
           </p>
 
           {/* Vimeo video as requested in the orange instructions */}
@@ -245,7 +246,7 @@ export default function Hero() {
           justifyContent: 'flex-start',
           padding: '2rem',
           height: '100%',
-          minHeight: isMobile ? '900px' : '780px', // Increased from 820px to 900px for mobile
+          minHeight: isMobile ? '900px' : '780px',
           width: '100%',
         }}>
           {/* Futuristic design elements */}
@@ -261,7 +262,7 @@ export default function Hero() {
             animationDuration: '2s',
             animationIterationCount: 'infinite',
             fontFamily: 'monospace'
-          }}>KeyAgency</h2>
+          }}>VibeLabb</h2>
           
           {/* AI Robot with animated effects */}
           <div className="ai-robot-container" style={{
@@ -336,7 +337,7 @@ export default function Hero() {
             color: 'white',
             position: 'relative',
             overflow: 'hidden',
-            height: isMobile ? '600px' : '480px', // Changed from 520px to 600px for mobile
+            height: isMobile ? '600px' : '480px',
             display: 'flex',
             flexDirection: 'column',
             marginTop: 'auto',
@@ -354,22 +355,22 @@ export default function Hero() {
                 <div style={{ width: '0.75rem', height: '0.75rem', borderRadius: '50%', backgroundColor: '#FFBD2E' }}></div>
                 <div style={{ width: '0.75rem', height: '0.75rem', borderRadius: '50%', backgroundColor: '#28CA41' }}></div>
               </div>
-              <div style={{ marginLeft: 'auto' }}>KeyAgency Terminal</div>
+              <div style={{ marginLeft: 'auto' }}>VibeLabb Terminal</div>
             </div>
             
             {/* Terminal content with bullet points */}
             <div style={{ flexGrow: 1, overflow: 'visible' }}>
               <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ color: 'var(--neon-lime)' }}>$</span>
-                <span>keyagency --init --project=digital-business</span>
+                <span>vibelabb --init --project=digital-business</span>
               </div>
               
               <div style={{ marginBottom: '1rem' }}>
-                <span style={{ color: 'var(--electric-blue)' }}>Loading AI capabilities...</span>
+                <span style={{ color: 'var(--electric-blue)' }}>Cargando capacidades de Vibe Coding...</span>
               </div>
               
               <div style={{ marginBottom: '1rem' }}>
-                <span style={{ color: 'var(--neon-lime)' }}>AI Agent ready. Generating recommendations:</span>
+                <span style={{ color: 'var(--neon-lime)' }}>Vibe Coding listo. Generando recomendaciones:</span>
               </div>
               
               {/* Bullet points with animation */}
@@ -470,7 +471,7 @@ export default function Hero() {
           <line x1="8" y1="2" x2="8" y2="6"></line>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        Resolvemos tus dudas, agenda una reunión gratuita
+        Aprende Vibe Coding - Agenda una sesión gratuita
       </div>
       
       {/* Calendly Script */}
