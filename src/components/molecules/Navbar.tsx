@@ -144,24 +144,26 @@ export default function Navbar() {
               }} className="hover-line"></span>
             </button>
           </li>
-          <li>
-            <button
-              onClick={() => scrollToSection('faq')}
-              style={navButtonStyle}
-            >
-              faq
-              <span style={{
-                position: 'absolute',
-                bottom: 0,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '0',
-                height: '2px',
-                backgroundColor: 'var(--neon-lime)',
-                transition: 'width 0.3s ease',
-              }} className="hover-line"></span>
-            </button>
-          </li>
+          {!isMobile && (
+            <li>
+              <button
+                onClick={() => scrollToSection('faq')}
+                style={navButtonStyle}
+              >
+                faq
+                <span style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '0',
+                  height: '2px',
+                  backgroundColor: 'var(--neon-lime)',
+                  transition: 'width 0.3s ease',
+                }} className="hover-line"></span>
+              </button>
+            </li>
+          )}
           <li>
             <button
               onClick={() => scrollToSection('footer')}
