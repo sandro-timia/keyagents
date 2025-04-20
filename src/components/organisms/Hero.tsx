@@ -189,19 +189,21 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="hero" style={{ padding: '6rem 0 4rem' }}>
+    <div className="hero" style={{ padding: isMobile ? '5rem 0 3rem' : '5.5rem 0 3.5rem' }}>
       <div className="container" style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '1rem',
+        gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+        gap: isMobile ? '2rem' : '1rem',
         minHeight: '500px',
-        margin: '100 100px',
+        margin: '0 auto',
+        maxWidth: '1200px',
+        padding: '0 1rem',
       }}>
         <div style={{ 
           position: 'relative',
           zIndex: 1, 
           borderRadius: '1rem',
-          padding: '2rem',
+          padding: isMobile ? '1.5rem' : '1.75rem',
           background: 'rgba(47,47,47,0.7)',
           backdropFilter: 'blur(10px)',
           display: 'flex',
@@ -211,42 +213,55 @@ export default function Hero() {
         }}>
           <h1 className="mb-4" style={{ 
             color: 'white',
-            fontSize: '2.2rem', 
+            fontSize: isMobile ? '1.8rem' : '2.2rem', 
             lineHeight: '1.3',
-            fontWeight: '700'
+            fontWeight: '700',
+            marginBottom: '0.75rem',
           }}>
             Crea sitios web <span style={{ color: 'var(--neon-lime)' }}>profesionales</span> con <span style={{ color: 'var(--neon-lime)' }}>I.A</span>, y revoluciona tu emprendimiento
           </h1>
           
           <h2 className="mb-6" style={{
             color: 'var(--neon-lime)',
-            fontSize: '1.8rem',
+            fontSize: isMobile ? '1.5rem' : '1.8rem',
             lineHeight: '1.2',
             fontWeight: '600',
-            textAlign: 'center'
+            textAlign: 'center',
+            marginBottom: '0.75rem',
           }}>
             !Domina el poder del vibe coding ahora!
           </h2>
 
-          <p className="mb-8" style={{ color: 'white' }}>
+          <p style={{ 
+            color: 'white', 
+            marginBottom: '1.25rem',
+            fontSize: isMobile ? '0.95rem' : '1rem',
+          }}>
             VibeLabb ayuda a los emprendedores a explotar el potencial de la IA para construir, crecer y escalar negocios exitosos en línea. ¡Recibe la notificación cuando lancemos!
           </p>
 
           {/* Vimeo video as requested in the orange instructions */}
           <div style={{ 
-            marginBottom: '2rem', 
+            marginBottom: '1rem', 
             borderRadius: '0.75rem',
             overflow: 'hidden',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+            flex: '1 1 auto',
+            minHeight: isMobile ? '250px' : '320px',
+            display: 'flex',
+            flexDirection: 'column',
           }}>
             <iframe 
               title="vimeo-player" 
               src="https://player.vimeo.com/video/653744811?h=b6d18998f0" 
               width="100%" 
-              height="300" 
+              height="100%" 
               frameBorder="0" 
               allowFullScreen
-              style={{ display: 'block' }}
+              style={{ 
+                display: 'block',
+                flexGrow: 1,
+              }}
             ></iframe>
           </div>
         </div>
@@ -259,9 +274,9 @@ export default function Hero() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          padding: '2rem',
+          padding: isMobile ? '1.5rem' : '1.75rem',
           height: '100%',
-          minHeight: isMobile ? '900px' : '780px',
+          minHeight: isMobile ? '820px' : '720px',
           width: '100%',
         }}>
           {/* Futuristic design elements */}
@@ -270,9 +285,9 @@ export default function Hero() {
           <h2 style={{ 
             color: 'var(--neon-lime)', 
             textAlign: 'center', 
-            fontSize: '2.5rem', 
+            fontSize: isMobile ? '2rem' : '2.5rem', 
             textShadow: '0 0 10px rgba(168,255,96,0.7), 0 0 20px rgba(168,255,96,0.5)',
-            marginBottom: '2rem',
+            marginBottom: '1.5rem',
             animationName: 'neonPulse',
             animationDuration: '2s',
             animationIterationCount: 'infinite',
@@ -281,14 +296,14 @@ export default function Hero() {
           
           {/* AI Robot with animated effects */}
           <div className="ai-robot-container" style={{
-            width: '90px',
-            height: '90px',
+            width: isMobile ? '75px' : '90px',
+            height: isMobile ? '75px' : '90px',
             backgroundColor: 'var(--dark-gray)',
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '2rem',
+            marginBottom: '1.5rem',
             position: 'relative',
             boxShadow: '0 0 20px rgba(168,255,96,0.5), inset 0 0 10px rgba(168,255,96,0.3)',
             animationName: 'float',
@@ -297,8 +312,8 @@ export default function Hero() {
             animationIterationCount: 'infinite'
           }}>
             <svg 
-              width="50" 
-              height="50" 
+              width={isMobile ? "40" : "50"} 
+              height={isMobile ? "40" : "50"}
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="var(--neon-lime)" 
@@ -347,21 +362,22 @@ export default function Hero() {
             width: '100%',
             backgroundColor: 'rgba(0,0,0,0.7)',
             borderRadius: '0.5rem',
-            padding: '1.25rem',
+            padding: isMobile ? '1rem' : '1.25rem',
             fontFamily: 'monospace',
             color: 'white',
             position: 'relative',
             overflow: 'hidden',
-            height: isMobile ? '600px' : '480px',
+            height: isMobile ? '540px' : '470px',
             display: 'flex',
             flexDirection: 'column',
             marginTop: 'auto',
+            flexGrow: 1,
           }}>
             {/* Terminal header */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              marginBottom: '1rem',
+              marginBottom: '0.75rem',
               borderBottom: '1px solid rgba(255,255,255,0.1)',
               paddingBottom: '0.5rem'
             }}>
