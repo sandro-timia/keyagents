@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 // TeachersSection doesn't need most of the code that was copied from Hero.tsx
 export default function TeachersSection() {
@@ -92,11 +93,16 @@ export default function TeachersSection() {
         <div className="grid grid-3">
           {/* Teacher Cards with consistent hover styling */}
           <div className="card">
-            <div style={{ height: '200px', backgroundColor: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem' }}>
-              <span style={{ fontSize: '2rem', color: 'white', fontWeight: 'bold' }}>A</span>
+            <div style={{ height: '200px', backgroundColor: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem', overflow: 'hidden', position: 'relative' }}>
+              <Image 
+                src="/assets/images/teacher_1_sandro_calzada.jpg"
+                alt="Sandro Calzada"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
             </div>
             <h3>Sandro Calzada</h3>
-            <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>AI Strategy Expert</p>
+            <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>Experto en programación asistida por IA</p>
             <p>With over 10 years of experience in digital marketing and AI, Alex helps entrepreneurs leverage cutting-edge tools to scale their businesses.</p>
             <a href="https://linkedin.com/in/alexmorgan" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
               Connect on LinkedIn
@@ -105,24 +111,34 @@ export default function TeachersSection() {
           
           {/* Keep the other teacher cards with the same styling */}
           <div className="card">
-            <div style={{ height: '200px', backgroundColor: 'var(--digital-violet)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem' }}>
-              <span style={{ fontSize: '2rem', color: 'white', fontWeight: 'bold' }}>E</span>
+            <div style={{ height: '200px', backgroundColor: 'var(--digital-violet)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem', overflow: 'hidden', position: 'relative' }}>
+              <Image 
+                src="/assets/images/teacher_2_eduardo_obrien.jpg"
+                alt="Eduardo O'Brien"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
             </div>
             <h3>Eduardo O&apos;Brien</h3>
-            <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>Business Development Coach</p>
+            <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>Experto en IA generativa para empresas</p>
             <p>Sarah specializes in helping startups build scalable business models using AI. Former tech executive with experience at Google and Meta.</p>
-            <a href="https://linkedin.com/in/sarahchen" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+            <a href="https://www.linkedin.com/in/eduardo-o-brien-2909aa1b0/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
               Connect on LinkedIn
             </a>
           </div>
           
           <div className="card">
-            <div style={{ height: '200px', backgroundColor: 'var(--neon-lime)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem' }}>
-              <span style={{ fontSize: '2rem', color: 'var(--dark-gray)', fontWeight: 'bold' }}>M</span>
+            <div style={{ height: '200px', backgroundColor: 'var(--neon-lime)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', marginBottom: '1rem', overflow: 'hidden', position: 'relative' }}>
+              <Image 
+                src="/assets/images/teacher_3_michel_rodrigez.jpg"
+                alt="Michel Rodriguez"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
             </div>
-            <h3>Michael Rodriguez</h3>
-            <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>Digital Marketing Expert</p>
-            <p>Michael has helped over 200 businesses implement AI-driven marketing strategies that deliver measurable results and sustainable growth.</p>
+            <h3>Mishel Rodriguez</h3>
+            <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>Experta en Marketing Digital y automatización</p>
+            <p>Mishel has helped over 200 businesses implement AI-driven marketing strategies that deliver measurable results and sustainable growth.</p>
             <a href="https://linkedin.com/in/michaelrodriguez" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
               Connect on LinkedIn
             </a>
