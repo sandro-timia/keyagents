@@ -1,35 +1,68 @@
 "use client";
 
 import { FormEvent, useState } from 'react';
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore';
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDKbGgiGWzGtt6m6HwwSYiR-liXLqKD7V4",
+  authDomain: "vibelabb-d3810.firebaseapp.com",
+  projectId: "vibelabb-d3810",
+  storageBucket: "vibelabb-d3810.appspot.com",
+  messagingSenderId: "41500991692",
+  appId: "1:41500991692:web:57b8d559628b017413df28"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export default function EmailSignupForm() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
 
     if (!email) {
       setError('Email is required');
+      setLoading(false);
       return;
     }
 
     if (!validateEmail(email)) {
       setError('Please enter a valid email address');
+      setLoading(false);
       return;
     }
 
-    // Here you would typically send this to your backend
-    console.log('Email submitted:', email);
-    setSuccess(true);
-    setEmail('');
+    try {
+      // Save email to Firebase
+      const leadCollection = collection(db, "lead");
+      await addDoc(leadCollection, {
+        email: email,
+        timestamp: Timestamp.now()
+      });
+      
+      console.log('Email submitted to Firebase:', email);
+      setSuccess(true);
+      setEmail('');
+    } catch (err) {
+      console.error('Error saving email to Firebase:', err);
+      setError('Failed to save your email. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -73,6 +106,7 @@ export default function EmailSignupForm() {
                 boxSizing: 'border-box',
                 fontSize: '16px'
               }}
+              disabled={loading}
             />
             <button 
               type="submit" 
@@ -84,11 +118,13 @@ export default function EmailSignupForm() {
                 color: 'var(--dark-gray)',
                 border: 'none',
                 fontWeight: '500',
-                cursor: 'pointer',
-                fontSize: '16px'
+                cursor: loading ? 'not-allowed' : 'pointer',
+                fontSize: '16px',
+                opacity: loading ? 0.7 : 1
               }}
+              disabled={loading}
             >
-              Notificarme
+              {loading ? 'Procesando...' : 'Notificarme'}
             </button>
           </div>
           {error && <p style={{ color: 'red', fontSize: '14px', marginTop: '4px' }}>{error}</p>}
