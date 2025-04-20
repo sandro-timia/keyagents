@@ -209,10 +209,25 @@ export default function Hero() {
           height: '100%',
           width: '100%',
         }}>
-          <h1 className="mb-8" style={{ color: 'white' }}>
-            Crea tu Negocio Digital con{' '}
-            <span style={{ color: 'var(--neon-lime)' }}>Vibe Coding</span>
+          <h1 className="mb-4" style={{ 
+            color: 'white',
+            fontSize: '2.2rem', 
+            lineHeight: '1.3',
+            fontWeight: '700'
+          }}>
+            Crea sitios web <span style={{ color: 'var(--neon-lime)' }}>profesionales</span> con <span style={{ color: 'var(--neon-lime)' }}>I.A</span>, y revoluciona tu emprendimiento
           </h1>
+          
+          <h2 className="mb-6" style={{
+            color: 'var(--neon-lime)',
+            fontSize: '1.8rem',
+            lineHeight: '1.2',
+            fontWeight: '600',
+            textAlign: 'center'
+          }}>
+            !Domina el poder del vibe coding ahora!
+          </h2>
+
           <p className="mb-8" style={{ color: 'white' }}>
             VibeLabb ayuda a los emprendedores a explotar el potencial de la IA para construir, crecer y escalar negocios exitosos en línea. ¡Recibe la notificación cuando lancemos!
           </p>
@@ -471,7 +486,7 @@ export default function Hero() {
           <line x1="8" y1="2" x2="8" y2="6"></line>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        Aprende Vibe Coding - Agenda una sesión gratuita
+        ¿Aún tienes dudas? Agenda una sesión con nosotros
       </div>
       
       {/* Calendly Script */}

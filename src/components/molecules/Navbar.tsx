@@ -32,16 +32,16 @@ export default function Navbar() {
   // Common style for navigation buttons
   const navButtonStyle = {
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '500',
     background: 'none',
     border: 'none',
     cursor: 'pointer',
     padding: '0.5rem 0',
     position: 'relative' as const,
     letterSpacing: '0.5px',
-    textTransform: 'uppercase' as const,
-    fontSize: '0.9rem',
-    textDecoration: 'underline',
+    textTransform: 'none' as const,
+    fontSize: '1rem',
+    fontFamily: 'Inter, system-ui, sans-serif',
   };
 
   return (
@@ -110,7 +110,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('teachers')}
               style={navButtonStyle}
             >
-              Profesores
+              profesores
               <span style={{
                 position: 'absolute',
                 bottom: 0,
@@ -128,7 +128,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('faq')}
               style={navButtonStyle}
             >
-              FAQ
+              faq
               <span style={{
                 position: 'absolute',
                 bottom: 0,
@@ -146,7 +146,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('footer')}
               style={navButtonStyle}
             >
-              Contacto
+              contacto
               <span style={{
                 position: 'absolute',
                 bottom: 0,

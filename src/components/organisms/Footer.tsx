@@ -19,7 +19,7 @@ export default function Footer() {
               </div>
             </div>
             <p style={{ color: 'white' }}>
-              Empoderando emprendedores para construir negocios digitales exitosos a través del Vibe Coding.
+              Empoderando emprendedores para construir negocios digitales exitosos.
             </p>
           </div>
           

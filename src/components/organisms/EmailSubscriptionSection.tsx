@@ -24,7 +24,7 @@ export default function EmailSubscriptionSection() {
     // Simulate API call
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      setMessage('¡Genial! Tu descuento del 50% ha sido reservado. Te notificaremos cuando el curso esté disponible.');
+      setMessage('¡Genial! Te notificaremos cuando el curso esté disponible.');
       setMessageType('success');
       setEmail('');
       setHasSubscribed(true);
@@ -85,32 +85,6 @@ export default function EmailSubscriptionSection() {
             Domina el Vibe Coding y lanza tu negocio digital
           </h2>
           
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            marginBottom: '5px',
-          }}>
-            <span style={{
-              fontSize: '20px',
-              color: hasSubscribed ? 'rgba(255, 255, 255, 0.5)' : 'white',
-              fontWeight: 600,
-              textDecoration: hasSubscribed ? 'line-through' : 'none',
-            }}>
-              Precio normal: $299 USD
-            </span>
-            
-            {hasSubscribed && (
-              <span style={{
-                fontSize: '22px',
-                color: 'var(--neon-lime)',
-                fontWeight: 700,
-              }}>
-                $149.50 USD
-              </span>
-            )}
-          </div>
-          
           <p
             style={{
               fontSize: '16px',
@@ -122,79 +96,84 @@ export default function EmailSubscriptionSection() {
             }}
           >
             {hasSubscribed 
-              ? '¡Felicidades! Has desbloqueado un 50% de descuento para el curso de VibeLabb' 
-              : 'Regístrate ahora en VibeLabb y obtén un 50% de descuento cuando lancemos el curso'}
+              ? '¡Felicidades! Te has registrado exitosamente en VibeLabb' 
+              : 'Regístrate ahora en VibeLabb y sé de los primeros en acceder cuando lancemos el curso'}
           </p>
         </div>
         
-        <form onSubmit={handleSubmit} style={{ position: 'relative' }}>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="ejemplo@correo.com"
-            style={{
-              padding: '0 150px 0 15px',
-              fontSize: '16px',
-              borderRadius: '8px',
-              backgroundColor: 'rgba(15, 23, 42, 0.7)',
-              border: hasSubscribed ? '1px solid var(--neon-lime)' : '1px solid rgba(255, 255, 255, 0.1)',
-              color: 'white',
-              outline: 'none',
-              width: '100%',
-              height: '50px',
-              boxSizing: 'border-box',
-            }}
-            disabled={hasSubscribed}
-          />
-          
-          <button
-            type="submit"
-            disabled={isSubmitting || hasSubscribed}
-            style={{
-              position: 'absolute',
-              right: '5px',
-              top: '5px',
-              bottom: '5px',
-              padding: '0 20px',
-              fontSize: '16px',
-              fontWeight: 600,
-              borderRadius: '6px',
-              background: hasSubscribed ? '#28a745' : '#a6ff60',
-              color: '#121827',
-              border: 'none',
-              cursor: (isSubmitting || hasSubscribed) ? 'not-allowed' : 'pointer',
-              minWidth: '130px',
-            }}
-          >
-            {isSubmitting ? 'Procesando...' : hasSubscribed ? '¡Reservado!' : 'Notificarme'}
-          </button>
-        </form>
-        
-        {message && (
-          <div
-            style={{
-              padding: '10px',
-              marginTop: '10px',
-              borderRadius: '6px',
-              backgroundColor: messageType === 'success' 
-                ? 'rgba(168, 255, 96, 0.15)' 
-                : 'rgba(225, 29, 72, 0.15)',
-              border: `1px solid ${
-                messageType === 'success' 
-                  ? 'rgba(168, 255, 96, 0.3)' 
-                  : 'rgba(225, 29, 72, 0.3)'
-              }`,
-              color: messageType === 'success' 
-                ? 'var(--neon-lime)' 
-                : '#e11d48',
-              fontSize: '14px',
-            }}
-          >
-            {message}
+        <div style={{ width: '400px', margin: '0 auto' }}>
+          <div className="email-container" style={{ position: 'relative', height: '50px' }}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="ejemplo@correo.com"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                padding: '0 140px 0 15px',
+                fontSize: '16px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                border: hasSubscribed ? '1px solid var(--neon-lime)' : '1px solid rgba(255, 255, 255, 0.1)',
+                color: 'white',
+                outline: 'none',
+                boxSizing: 'border-box',
+              }}
+              disabled={hasSubscribed}
+            />
+            
+            <button
+              onClick={handleSubmit}
+              disabled={isSubmitting || hasSubscribed}
+              style={{
+                position: 'absolute',
+                top: '5px',
+                right: '5px',
+                height: 'calc(100% - 10px)',
+                padding: '0 20px',
+                fontSize: '16px',
+                fontWeight: 600,
+                borderRadius: '6px',
+                background: hasSubscribed ? '#28a745' : '#a6ff60',
+                color: '#121827',
+                border: 'none',
+                cursor: (isSubmitting || hasSubscribed) ? 'not-allowed' : 'pointer',
+                minWidth: '130px',
+                zIndex: 2,
+              }}
+            >
+              {isSubmitting ? 'Procesando...' : hasSubscribed ? '¡Reservado!' : 'Notificarme'}
+            </button>
           </div>
-        )}
+          
+          {message && (
+            <div
+              style={{
+                padding: '10px',
+                marginTop: '10px',
+                borderRadius: '6px',
+                backgroundColor: messageType === 'success' 
+                  ? 'rgba(168, 255, 96, 0.15)' 
+                  : 'rgba(225, 29, 72, 0.15)',
+                border: `1px solid ${
+                  messageType === 'success' 
+                    ? 'rgba(168, 255, 96, 0.3)' 
+                    : 'rgba(225, 29, 72, 0.3)'
+                }`,
+                color: messageType === 'success' 
+                  ? 'var(--neon-lime)' 
+                  : '#e11d48',
+                fontSize: '14px',
+              }}
+            >
+              {message}
+            </div>
+          )}
+        </div>
         
         <div style={{
           marginTop: '15px',
