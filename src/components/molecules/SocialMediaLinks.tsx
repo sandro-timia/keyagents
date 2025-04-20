@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 export default function SocialMediaLinks() {
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check if viewport is mobile sized
+  // Check if viewport is mobile sizedd
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 768);
