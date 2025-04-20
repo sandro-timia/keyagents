@@ -104,7 +104,7 @@ export default function TeachersSection() {
             <h3>Sandro Calzada</h3>
             <p style={{ color: 'var(--electric-blue)', fontWeight: '500', marginBottom: '1rem' }}>Experto en programación asistida por IA</p>
             <p>With over 10 years of experience in digital marketing and AI, Alex helps entrepreneurs leverage cutting-edge tools to scale their businesses.</p>
-            <a href="https://linkedin.com/in/alexmorgan" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+            <a href="https://www.linkedin.com/in/sandro-calzada-berisso/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
               Connect on LinkedIn
             </a>
           </div>
