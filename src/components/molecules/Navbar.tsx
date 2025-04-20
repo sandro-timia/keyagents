@@ -5,8 +5,9 @@ import Link from 'next/link';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Add scroll effect to navbar
+  // Add scroll effect to navbar and check screen size
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
@@ -14,10 +15,23 @@ export default function Navbar() {
         setScrolled(isScrolled);
       }
     };
-
-    document.addEventListener('scroll', handleScroll, { passive: true });
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial checks
+    handleScroll();
+    checkMobile();
+    
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
     return () => {
-      document.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
     };
   }, [scrolled]);
 
@@ -41,7 +55,7 @@ export default function Navbar() {
     position: 'relative' as const,
     letterSpacing: '0.5px',
     textTransform: 'none' as const,
-    fontSize: '1rem',
+    fontSize: isMobile ? '0.8rem' : '1rem',
     fontFamily: 'Inter, system-ui, sans-serif',
   };
 
@@ -52,7 +66,7 @@ export default function Navbar() {
       left: 0,
       right: 0,
       zIndex: 100,
-      padding: '1rem 0',
+      padding: isMobile ? '0.5rem 0' : '1rem 0',
       transition: 'all 0.3s ease',
       backgroundColor: scrolled ? 'rgba(30, 30, 30, 0.9)' : 'transparent',
       backdropFilter: scrolled ? 'blur(10px)' : 'none',
@@ -61,21 +75,23 @@ export default function Navbar() {
       <div style={{
         maxWidth: '1200px',
         margin: '0 auto',
-        padding: '0 1.5rem',
+        padding: '0 1rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        flexDirection: 'row',
       }}>
         {/* Logo on the left */}
         <div className="logo" style={{
           display: 'flex',
           alignItems: 'center',
           gap: '0.5rem',
+          flexShrink: 0,
         }}>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
             <div style={{
-              width: '40px',
-              height: '40px',
+              width: isMobile ? '30px' : '40px',
+              height: isMobile ? '30px' : '40px',
               background: 'linear-gradient(135deg, var(--neon-lime), var(--electric-blue))',
               borderRadius: '10px',
               display: 'flex',
@@ -86,12 +102,12 @@ export default function Navbar() {
               <span style={{
                 color: 'var(--dark-gray)',
                 fontWeight: 'bold',
-                fontSize: '1.4rem',
+                fontSize: isMobile ? '1.1rem' : '1.4rem',
               }}>V</span>
             </div>
             <div style={{
               fontWeight: 'bold',
-              fontSize: '1.2rem',
+              fontSize: isMobile ? '1rem' : '1.2rem',
               color: 'white',
               letterSpacing: '0.5px',
             }}>
@@ -103,17 +119,19 @@ export default function Navbar() {
         {/* Nav links on the right */}
         <ul style={{
           display: 'flex',
-          gap: '2.5rem',
+          gap: isMobile ? '0.7rem' : '2.5rem',
           listStyle: 'none',
           margin: 0,
           padding: 0,
+          flexWrap: 'nowrap',
+          alignItems: 'center',
         }}>
           <li>
             <button
               onClick={() => scrollToSection('teachers')}
               style={navButtonStyle}
             >
-              profesores
+              {isMobile ? 'profesores' : 'profesores'}
               <span style={{
                 position: 'absolute',
                 bottom: 0,
@@ -149,7 +167,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('footer')}
               style={navButtonStyle}
             >
-              contacto
+              {isMobile ? 'contacto' : 'contacto'}
               <span style={{
                 position: 'absolute',
                 bottom: 0,
@@ -169,7 +187,7 @@ export default function Navbar() {
                 display: 'block',
                 textDecoration: 'none',
                 background: 'linear-gradient(135deg, var(--neon-lime), rgba(168, 255, 96, 0.8))',
-                padding: '0.5rem 1rem',
+                padding: isMobile ? '0.35rem 0.6rem' : '0.5rem 1rem',
                 borderRadius: '6px',
                 color: '#121827',
                 fontWeight: '600',
@@ -177,10 +195,12 @@ export default function Navbar() {
                 boxShadow: '0 4px 10px rgba(168, 255, 96, 0.25)',
                 border: 'none',
                 cursor: 'pointer',
+                fontSize: isMobile ? '0.8rem' : '1rem',
+                whiteSpace: 'nowrap',
               }} 
               className="subscribe-button"
             >
-              Me interesa
+              {isMobile ? 'Me interesa' : 'Me interesa'}
             </button>
           </li>
         </ul>
@@ -203,13 +223,6 @@ export default function Navbar() {
         .subscribe-button:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 14px rgba(168, 255, 96, 0.35);
-        }
-        
-        @media (max-width: 640px) {
-          nav > div {
-            flex-direction: column;
-            gap: 1rem;
-          }
         }
       `}</style>
     </nav>
