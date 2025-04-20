@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -71,30 +72,32 @@ export default function Navbar() {
           alignItems: 'center',
           gap: '0.5rem',
         }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            background: 'linear-gradient(135deg, var(--neon-lime), var(--electric-blue))',
-            borderRadius: '10px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 10px rgba(58, 141, 255, 0.3)',
-          }}>
-            <span style={{
-              color: 'var(--dark-gray)',
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+            <div style={{
+              width: '40px',
+              height: '40px',
+              background: 'linear-gradient(135deg, var(--neon-lime), var(--electric-blue))',
+              borderRadius: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 10px rgba(58, 141, 255, 0.3)',
+            }}>
+              <span style={{
+                color: 'var(--dark-gray)',
+                fontWeight: 'bold',
+                fontSize: '1.4rem',
+              }}>V</span>
+            </div>
+            <div style={{
               fontWeight: 'bold',
-              fontSize: '1.4rem',
-            }}>V</span>
-          </div>
-          <div style={{
-            fontWeight: 'bold',
-            fontSize: '1.2rem',
-            color: 'white',
-            letterSpacing: '0.5px',
-          }}>
-            <span style={{ color: 'var(--neon-lime)' }}>Vibe</span>Labb
-          </div>
+              fontSize: '1.2rem',
+              color: 'white',
+              letterSpacing: '0.5px',
+            }}>
+              <span style={{ color: 'var(--neon-lime)' }}>Vibe</span>Labb
+            </div>
+          </Link>
         </div>
 
         {/* Nav links on the right */}
@@ -159,6 +162,27 @@ export default function Navbar() {
               }} className="hover-line"></span>
             </button>
           </li>
+          <li>
+            <button
+              onClick={() => scrollToSection('subscribe')}
+              style={{
+                display: 'block',
+                textDecoration: 'none',
+                background: 'linear-gradient(135deg, var(--neon-lime), rgba(168, 255, 96, 0.8))',
+                padding: '0.5rem 1rem',
+                borderRadius: '6px',
+                color: '#121827',
+                fontWeight: '600',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                boxShadow: '0 4px 10px rgba(168, 255, 96, 0.25)',
+                border: 'none',
+                cursor: 'pointer',
+              }} 
+              className="subscribe-button"
+            >
+              Me interesa
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -174,6 +198,11 @@ export default function Navbar() {
         
         .logo:hover {
           transform: translateY(-2px);
+        }
+        
+        .subscribe-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 14px rgba(168, 255, 96, 0.35);
         }
         
         @media (max-width: 640px) {

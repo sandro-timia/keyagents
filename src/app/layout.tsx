@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KeyAgency | AI-Powered Digital Business Training",
+  title: "VibeLabb | AI-Powered Digital Business Training",
   description: "Learn how to launch and grow your digital business using AI tools with KeyAgency. Sign up to get notified when we launch!",
 };
 

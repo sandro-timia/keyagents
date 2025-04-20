@@ -47,8 +47,8 @@ export default function FAQSection() {
   // FAQ data
   const faqs = [
     {
-      question: "¿Qué es Key Agency?",
-      answer: "Key Agency es una plataforma que ayuda a emprendedores y empresas a aprovechar el poder de la IA para construir, hacer crecer y escalar negocios digitales exitosos. Ofrecemos soluciones personalizadas para automatizar tareas, crear sitios web y desarrollar estrategias de marketing digital efectivas."
+      question: "¿Qué es VibeLabb?",
+      answer: "VibeLabb es una plataforma que ayuda a emprendedores y empresas a aprovechar el poder de la IA para construir, hacer crecer y escalar negocios digitales exitosos. Ofrecemos soluciones personalizadas para automatizar tareas, crear sitios web y desarrollar estrategias de marketing digital efectivas."
     },
     {
       question: "¿Cómo puede la IA beneficiar a mi negocio?",
@@ -83,7 +83,7 @@ export default function FAQSection() {
       answer: "La seguridad de tus datos es nuestra prioridad. Implementamos protocolos de encriptación avanzados, seguimos las mejores prácticas de la industria en protección de datos, realizamos auditorías de seguridad regulares y cumplimos con las normativas de protección de datos como GDPR. Tus datos nunca son compartidos con terceros sin tu consentimiento explícito."
     },
     {
-      question: "¿Cuál es el proceso para comenzar a trabajar con Key Agency?",
+      question: "¿Cuál es el proceso para comenzar a trabajar con VibeLabb?",
       answer: "El proceso comienza con una reunión gratuita donde discutimos tus objetivos y necesidades. Luego, desarrollamos una propuesta personalizada detallando soluciones, plazos y costos. Una vez aprobada, comenzamos la implementación con un enfoque colaborativo, manteniéndote informado en cada paso. Al finalizar, te capacitamos para aprovechar al máximo tu nueva solución."
     }
   ];

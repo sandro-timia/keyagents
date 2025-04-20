@@ -81,7 +81,7 @@ export default function EmailSignupForm() {
           color: 'var(--dark-gray)' 
         }}>
           <p style={{ fontWeight: '500' }}>Thank you for signing up!</p>
-          <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>We&apos;ll notify you when KeyAgency goes live.</p>
+          <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>We&apos;ll notify you when VibeLabb goes live.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
