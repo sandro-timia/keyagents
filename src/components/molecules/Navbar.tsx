@@ -184,11 +184,18 @@ export default function Navbar() {
                 border: 'none',
                 cursor: 'pointer',
                 fontSize: isMobile ? '0.8rem' : '1rem',
-                whiteSpace: 'nowrap',
+                whiteSpace: isMobile ? 'normal' : 'nowrap',
+                textAlign: isMobile ? 'center' : 'inherit',
+                width: isMobile ? '60px' : 'auto',
+                lineHeight: isMobile ? '1.1' : 'inherit',
               }} 
               className="subscribe-button"
             >
-              {isMobile ? 'Me interesa' : 'Me interesa'}
+              {isMobile ? (
+                <>
+                  Me<br />interesa
+                </>
+              ) : 'Me interesa'}
             </button>
           </li>
         </ul>
