@@ -93,8 +93,8 @@ export default function Navbar() {
             <Image 
               src="/vibelabb_logo.png" 
               alt="VibeLabb Logo" 
-              width={isMobile ? 180 : 200} 
-              height={isMobile ? 45 : 50}
+              width={isMobile ? 140 : 200} 
+              height={isMobile ? 35 : 50}
               style={{
                 objectFit: 'contain',
               }}
