@@ -56,7 +56,7 @@ export default function Navbar() {
     position: 'relative' as const,
     letterSpacing: '0.5px',
     textTransform: 'none' as const,
-    fontSize: isMobile ? '0.8rem' : '1rem',
+    fontSize: isMobile ? '0.7rem' : '1rem',
     fontFamily: 'Inter, system-ui, sans-serif',
   };
 
