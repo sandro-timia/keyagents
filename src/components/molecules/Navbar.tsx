@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -89,30 +90,15 @@ export default function Navbar() {
           flexShrink: 0,
         }}>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
-            <div style={{
-              width: isMobile ? '30px' : '40px',
-              height: isMobile ? '30px' : '40px',
-              background: 'linear-gradient(135deg, var(--neon-lime), var(--electric-blue))',
-              borderRadius: '10px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 10px rgba(58, 141, 255, 0.3)',
-            }}>
-              <span style={{
-                color: 'var(--dark-gray)',
-                fontWeight: 'bold',
-                fontSize: isMobile ? '1.1rem' : '1.4rem',
-              }}>V</span>
-            </div>
-            <div style={{
-              fontWeight: 'bold',
-              fontSize: isMobile ? '1rem' : '1.2rem',
-              color: 'white',
-              letterSpacing: '0.5px',
-            }}>
-              <span style={{ color: 'var(--neon-lime)' }}>Vibe</span>Labb
-            </div>
+            <Image 
+              src="/vibelabb_logo.png" 
+              alt="VibeLabb Logo" 
+              width={isMobile ? 180 : 200} 
+              height={isMobile ? 45 : 50}
+              style={{
+                objectFit: 'contain',
+              }}
+            />
           </Link>
         </div>
 
