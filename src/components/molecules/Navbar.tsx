@@ -93,8 +93,8 @@ export default function Navbar() {
             <Image 
               src="/vibelabb_logo.png" 
               alt="VibeLabb Logo" 
-              width={isMobile ? 140 : 200} 
-              height={isMobile ? 35 : 50}
+              width={isMobile ? 120 : 200} 
+              height={isMobile ? 30 : 50}
               style={{
                 objectFit: 'contain',
               }}
@@ -175,7 +175,7 @@ export default function Navbar() {
                 display: 'block',
                 textDecoration: 'none',
                 background: 'linear-gradient(135deg, var(--neon-lime), rgba(168, 255, 96, 0.8))',
-                padding: isMobile ? '0.35rem 0.6rem' : '0.5rem 1rem',
+                padding: isMobile ? '0.35rem 0.4rem' : '0.5rem 0.5rem',
                 borderRadius: '6px',
                 color: '#121827',
                 fontWeight: '600',
